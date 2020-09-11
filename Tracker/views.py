@@ -18,8 +18,11 @@ def add(request):
     log_user = request.user
     if request.method == 'POST':
         if 'projectf' in request.POST:
+            ProjectF = ProjectForm(request.POST )
+
             if ProjectF.is_valid():
                 ProjectF.save()
+
             return redirect(add)
 
         elif 'taskf' in request.POST:
@@ -32,6 +35,7 @@ def add(request):
 
 @login_required(login_url='/accounts/login')
 def dash(request):
+    log_user = request.user
     TaskM = Task.objects.all()
     ProjectM = Project.objects.all()
     context1 = {

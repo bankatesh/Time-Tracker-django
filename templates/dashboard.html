@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 
+
 {%block content%}
+
 
 
 <table class="table table-borderless">
@@ -20,8 +22,9 @@
       <th scope="col">{{task.task}}</th>
       <td>{{task.start_time}}</td>
       <td>{{task.end_time}}</td>
-      <td>{{task.start_time|timesince}}</td>
-        <td>{{task.project}}</td>
+      <td>{{ task.start_time|timesince }}</td>
+      <td>{{task.project}}</td>
+
     </tr>
 
   </tbody>
@@ -29,4 +32,4 @@
 </table>
 
 
-{%endblock%}l>
+{%endblock%}
