@@ -3,19 +3,23 @@
 {% block content %}
 {% load crispy_forms_tags %}
 
-<form method="POST" >
+<form method="POST" action="{% url 'add' %}" >
     {% csrf_token %}
+
+
     {{projectf|crispy }}
-    <button type="submit">Add Project</button>
+    <button type="submit" name="projectf">Add Project</button>
 
 </form>
 
+<p>{{task.project}}</p>
+
 <hr >
 
-<form method="POST" >
+<form method="POST" action="{% url 'add' %}">
     {% csrf_token %}
     {{taskf|crispy }}
-    <button type="submit">Add Task</button>
+    <button type="submit" name="taskf">Add Task</button>
 
 </form>
 
