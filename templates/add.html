@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load crispy_forms_tags %}
+
+<form method="POST" >
+    {% csrf_token %}
+    {{projectf|crispy }}
+    <button type="submit">Add Project</button>
+
+</form>
+
+<hr >
+
+<form method="POST" >
+    {% csrf_token %}
+    {{taskf|crispy }}
+    <button type="submit">Add Task</button>
+
+</form>
+
+{%endblock%}

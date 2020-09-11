@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{%block content%}
+
+
+<table class="table table-borderless">
+  <thead>
+    <tr>
+      <th scope="col">Tasks</th>
+      <th scope="col">Start Time</th>
+      <th scope="col">End Time</th>
+      <th scope="col">Elapsed Time</th>
+        <th scope="col">Project</th>
+    </tr>
+  </thead>
+
+    {% for task in taskm %}
+  <tbody>
+    <tr>
+      <th scope="col">{{task.task}}</th>
+      <td>{{task.start_time}}</td>
+      <td>{{task.end_time}}</td>
+      <td>{{task.start_time|timesince}}</td>
+        <td>{{task.project}}</td>
+    </tr>
+
+  </tbody>
+    {%endfor%}
+</table>
+
+
+{%endblock%}l>
