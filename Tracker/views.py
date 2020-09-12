@@ -18,26 +18,39 @@ def add(request):
     log_user = request.user
     if request.method == 'POST':
         if 'projectf' in request.POST:
-            ProjectF = ProjectForm(request.POST )
 
-            if ProjectF.is_valid():
-                ProjectF.save()
+            data = request.POST['project_nameform']
+            new = Project(project_name=data, userp =log_user)
+            #ProjectF = ProjectForm(request.POST )
+            new.save()
+
+            #if ProjectF.is_valid():
+             #   ProjectF.save()
 
             return redirect(add)
 
         elif 'taskf' in request.POST:
-            TaskF = TaskForm(request.POST)
+
+            data1 = request.POST
+            pk = data1['project']
+            new2 = Task(task=data1['taskform'],project = Project.objects.get(id=pk),start_time=data1['start_timeform'],end_time = data1['end_timeform'], usert = log_user)
+            new2.save()
+            return redirect(dash)
+
+            '''
             if TaskF.is_valid():
                 TaskF.save()
             return redirect(dash)
+            '''
+
 
     return render(request,'add.html',context)
 
 @login_required(login_url='/accounts/login')
 def dash(request):
     log_user = request.user
-    TaskM = Task.objects.all()
-    ProjectM = Project.objects.all()
+    TaskM = Task.objects.filter(usert = log_user)
+    ProjectM = Project.objects.filter(userp=log_user)
     context1 = {
         'taskm': TaskM,
         'projectm': ProjectM,
